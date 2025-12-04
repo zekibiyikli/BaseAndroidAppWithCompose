@@ -4,24 +4,20 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import com.base.androidappwithcompose.R
+import androidx.activity.compose.setContent
 import com.base.androidappwithcompose.core.BaseActivity
-import com.base.androidappwithcompose.databinding.ActivitySplashBinding
 import com.base.androidappwithcompose.ui.activity.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
-class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(
-    SplashViewModel::class
-) {
-
-    //Variables
-    override val getLayoutId: Int
-        get() = R.layout.activity_splash
+class SplashActivity : BaseActivity<SplashViewModel>(SplashViewModel::class) {
 
     //lifecycles
     override fun initView() {
+        setContent {
+            SplashScreen()
+        }
 
         viewModel.setDataStore(this)
 

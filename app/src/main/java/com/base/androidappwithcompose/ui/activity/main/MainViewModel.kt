@@ -20,6 +20,7 @@ open class MainViewModel @Inject constructor(
     val localData: LocalSharedPreferences
 ) : BaseViewModel<BaseRepository>(){
 
+
     fun readDataStore(context: Context){
         val nameFlow: Flow<String> = context.readFromDataStore(PreferencesKeys.USER_NAME, "")
         val ageFlow: Flow<Int> = context.readFromDataStore(PreferencesKeys.USER_AGE, 0)

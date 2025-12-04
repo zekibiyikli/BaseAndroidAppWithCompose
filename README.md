@@ -1,5 +1,6 @@
-# Base Android Project
+# Base Android Project With Compose
 
++ Compose
 + MVVM
 + OOP
 + Lifecycle
@@ -17,13 +18,12 @@
 + DataStore
 + Shimmer
 
+> Eklenecekler
++ Internet Connection Control
+
 > [!NOTE]
 > Repolar sayfalara göre ayrılacak.
 > 
-> 3 farklı adapter yapısı var. 
->   - Default
->   - DiffUtils 
->   - Pagging. 
 > 
 > 3 farklı local data yapısı var. 
 >   - SharedPreferences

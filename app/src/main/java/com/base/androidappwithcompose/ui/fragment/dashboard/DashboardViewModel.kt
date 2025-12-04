@@ -8,8 +8,8 @@ import com.base.androidappwithcompose.data.server.MainRepo
 import com.base.androidappwithcompose.model.ErrorModel
 import com.base.androidappwithcompose.model.response.UserResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,14 +17,18 @@ class DashboardViewModel @Inject constructor(
     val repo: MainRepo
 ) : BaseViewModel<BaseRepository>(){
 
-    private val _usersFlow = MutableSharedFlow<ApiResult<UserResponse, ErrorModel>?>(replay = 0)
-    val usersFlow = _usersFlow.asSharedFlow()
+    init {
+        getRandomUsers()   // SADECE BİR KEZ ÇAĞRILIR
+    }
+
+    private val _usersFlow = MutableStateFlow<ApiResult<UserResponse, ErrorModel>?>(null)
+    val usersFlow = _usersFlow.asStateFlow()
     fun getRandomUsers(){
         sendRequest {
             toResultFlow {
                 repo.getRandomUsers()
             }.collect{result->
-                _usersFlow.emit(result)
+                _usersFlow.value = result
             }
         }
     }

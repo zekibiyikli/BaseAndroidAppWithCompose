@@ -1,45 +1,41 @@
 package com.base.androidappwithcompose.ui.activity.main
 
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.base.androidappwithcompose.R
+import androidx.activity.compose.setContent
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import com.base.androidappwithcompose.core.BaseActivity
-import com.base.androidappwithcompose.databinding.ActivityMainBinding
+import com.base.androidappwithcompose.ui.activity.LocalMainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
+class MainActivity : BaseActivity<MainViewModel>(
     MainViewModel::class
 ) {
 
-    //Variables
-    override val getLayoutId: Int
-        get() = R.layout.activity_main
-
-    var navView: BottomNavigationView?=null
+    var isBottomBarVisible by mutableStateOf(true)
 
     //lifecycles
     override fun initView() {
-        navView = binding.navView
-
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        navView?.setupWithNavController(navController)
-
+        setContent {
+            CompositionLocalProvider(
+                LocalMainActivity provides this
+            ) {
+                MainScreen()
+            }
+        }
         viewModel.readDataStore(this)
     }
 
-    fun showHideBottomNavigation(isShow:Boolean){
-        if (isShow){
-            navView?.let {
-                it.animate().translationY(0f)
-            }
-        }else{
-            navView?.let {
-                it.animate().translationY(it.height.toFloat())
-            }
-        }
+    fun showBottomBar() {
+        isBottomBarVisible = true
     }
+
+    fun hideBottomBar() {
+        isBottomBarVisible = false
+    }
+
 
     //Companion Object
     companion object{

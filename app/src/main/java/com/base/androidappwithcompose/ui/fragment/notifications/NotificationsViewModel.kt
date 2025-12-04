@@ -13,6 +13,7 @@ class NotificationsViewModel @Inject constructor(
     val repo: MainRepo
 ) : BaseViewModel<BaseRepository>(){
 
+
     val userFlow = repo.getRandomUsers2().cachedIn(viewModelScope)
 
 

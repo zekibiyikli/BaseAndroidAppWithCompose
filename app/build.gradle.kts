@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,6 +75,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.paging)
     implementation(libs.androidx.datastore)
+    implementation(libs.accompanist)
     //Lottie
     implementation(libs.lottie)
     //KotPref
@@ -93,10 +95,13 @@ dependencies {
     //Hilt
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
-    kapt(libs.hilt.navigation)
+    implementation(libs.hilt.navigation)
     //Security
     implementation(libs.androidx.security)
     //Shimmer
     implementation(libs.shimmer)
+    //Coil
+    implementation(libs.coil)
+
 
 }
