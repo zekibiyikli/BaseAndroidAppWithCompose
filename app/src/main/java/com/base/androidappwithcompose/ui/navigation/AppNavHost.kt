@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.base.androidappwithcompose.ui.dialog.nointernet.NoInternetScreen
 import com.base.androidappwithcompose.ui.fragment.dashboard.DashboardScreen
 import com.base.androidappwithcompose.ui.fragment.home.HomeScreen
 import com.base.androidappwithcompose.ui.fragment.notifications.NotificationsScreen
@@ -39,5 +40,10 @@ fun MainNavHost(navController: NavHostController) {
             val userId = backStackEntry.arguments?.getString("userId") ?: ""
             UserDetailScreen(userId = userId, navController = navController)
         }
+
+        composable(Routes.NO_INTERNET) {
+            NoInternetScreen(false,{})
+        }
+
     }
 }

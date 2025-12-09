@@ -16,6 +16,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.base.androidappwithcompose.ui.activity.LocalMainActivity
+import com.base.androidappwithcompose.ui.dialog.nointernet.NoInternetScreen
 import com.base.androidappwithcompose.ui.navigation.MainNavHost
 import com.base.androidappwithcompose.ui.navigation.bottomItems
 
@@ -23,8 +24,13 @@ import com.base.androidappwithcompose.ui.navigation.bottomItems
 fun MainScreen(
     viewModel: MainViewModel = hiltViewModel()
 ) {
-    val navController = rememberNavController()
 
+    NoInternetScreen(
+        show = viewModel.showDialog,
+        onDismiss = { viewModel.closeDialog() }
+    )
+
+    val navController = rememberNavController()
     Scaffold(
         bottomBar = {
             AnimatedVisibility(
@@ -36,7 +42,7 @@ fun MainScreen(
             }
         }
     ) { innerPadding ->
-        Box(Modifier.padding(innerPadding)) {
+        Box(Modifier.fillMaxSize().padding(innerPadding)) {
             MainNavHost(navController)
         }
     }

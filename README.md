@@ -17,9 +17,9 @@
 + DiffUtils
 + DataStore
 + Shimmer
++ Internet Connection Control
 
 > Eklenecekler
-+ Internet Connection Control
 
 > [!NOTE]
 > Repolar sayfalara göre ayrılacak.

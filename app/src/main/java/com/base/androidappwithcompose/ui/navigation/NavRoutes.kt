@@ -15,6 +15,7 @@ object Routes {
     const val DASHBOARD = "dashboard"
     const val NOTIFICATIONS = "notifications"
     const val USER_DETAIL = "user_detail/{userId}"
+    const val NO_INTERNET = "no_internet"
 }
 
 val bottomItems = listOf(
