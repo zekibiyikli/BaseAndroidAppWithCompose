@@ -5,7 +5,9 @@
       "WebFetch(domain:dl.google.com)",
       "WebSearch",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:mvnrepository.com)"
+      "WebFetch(domain:mvnrepository.com)",
+      "Bash(gh api *)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
