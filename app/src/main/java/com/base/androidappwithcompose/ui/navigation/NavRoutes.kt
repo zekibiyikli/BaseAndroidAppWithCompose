@@ -8,32 +8,34 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Notifications
 import com.base.androidappwithcompose.model.BottomNavModel
-import kotlin.text.replaceFirstChar
 
-object Routes {
-    const val HOME = "home"
-    const val DASHBOARD = "dashboard"
-    const val NOTIFICATIONS = "notifications"
-    const val USER_DETAIL = "user_detail/{userId}"
-    const val NO_INTERNET = "no_internet"
+sealed class NavRoutes(val route: String) {
+    object Home : NavRoutes("home")
+    object Dashboard : NavRoutes("dashboard")
+    object Notifications : NavRoutes("notifications")
+    object NoInternet : NavRoutes("no_internet")
+    object UserDetail : NavRoutes("user_detail/{userId}") {
+        const val ARG_USER_ID = "userId"
+        fun createRoute(userId: String) = "user_detail/$userId"
+    }
 }
 
 val bottomItems = listOf(
     BottomNavModel(
-        route = Routes.HOME,
-        title = Routes.HOME.replaceFirstChar { it.uppercase() },
+        route = NavRoutes.Home.route,
+        title = "Home",
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home
     ),
     BottomNavModel(
-        route = Routes.DASHBOARD,
-        title = Routes.DASHBOARD.replaceFirstChar { it.uppercase() },
+        route = NavRoutes.Dashboard.route,
+        title = "Dashboard",
         selectedIcon = Icons.Filled.Favorite,
         unselectedIcon = Icons.Outlined.Favorite
     ),
     BottomNavModel(
-        route = Routes.NOTIFICATIONS,
-        title = Routes.NOTIFICATIONS.replaceFirstChar { it.uppercase() },
+        route = NavRoutes.Notifications.route,
+        title = "Notifications",
         selectedIcon = Icons.Filled.Notifications,
         unselectedIcon = Icons.Outlined.Notifications
     )

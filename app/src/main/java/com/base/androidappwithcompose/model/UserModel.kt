@@ -5,16 +5,16 @@ import com.base.androidappwithcompose.core.BaseModel
 
 @Keep
 data class UserModel(
-    var gender: String,
-    var name: UserNameModel,
-    var location: UserLocationModel,
-    var email:String,
-    var login: UserLoginModel,
-    var dob: UserDobModel,
-    var registered: UserRegisteredModel,
-    var phone: String,
-    var cell: String,
-    var id: UserIdModel,
-    var picture: UserPictureModel,
-    var nat:String,
-): BaseModel()
+    val gender: String,
+    val name: UserNameModel,
+    val location: UserLocationModel,
+    val email: String,
+    val login: UserLoginModel,
+    val dob: UserDobModel,
+    val registered: UserRegisteredModel,
+    val phone: String,
+    val cell: String,
+    val id: UserIdModel,
+    val picture: UserPictureModel,
+    val nat: String,
+) : BaseModel()

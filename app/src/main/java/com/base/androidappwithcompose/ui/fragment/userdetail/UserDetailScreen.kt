@@ -17,17 +17,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.base.androidappwithcompose.ui.activity.LocalMainActivity
 
 @Composable
 fun UserDetailScreen(
-    userId:String,
+    userId: String,
     viewModel: UserDetailViewModel = hiltViewModel(),
-    navController: NavController
+    navController: NavController,
+    onHideBottomBar: () -> Unit
 ) {
-    val activity = LocalMainActivity.current
     LaunchedEffect(Unit) {
-        activity.hideBottomBar()
+        onHideBottomBar()
     }
 
     Box(modifier = Modifier.fillMaxSize())  {

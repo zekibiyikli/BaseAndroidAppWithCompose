@@ -1,0 +1,114 @@
+build:
+  maxIssues: 0
+  excludeCorrectable: false
+
+config:
+  validation: true
+  warningsAsErrors: false
+
+complexity:
+  LongMethod:
+    threshold: 60
+  LongParameterList:
+    functionThreshold: 8
+    constructorThreshold: 8
+    ignoreAnnotated:
+      - 'Composable'
+  TooManyFunctions:
+    thresholdInFiles: 20
+    thresholdInClasses: 15
+    thresholdInInterfaces: 15
+    thresholdInObjects: 15
+    thresholdInEnums: 10
+  ComplexCondition:
+    threshold: 5
+  CyclomaticComplexMethod:
+    threshold: 15
+
+naming:
+  FunctionNaming:
+    active: true
+    functionPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ignoreAnnotated:
+      - 'Composable'
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][_A-Z0-9]*'
+    propertyPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    privatePropertyPattern: '_?[a-z][A-Za-z0-9]*'
+  InvalidPackageDeclaration:
+    active: true
+
+style:
+  MagicNumber:
+    active: true
+    ignoreNumbers:
+      - '-1'
+      - '0'
+      - '1'
+      - '2'
+      - '8'
+      - '16'
+      - '24'
+      - '32'
+      - '48'
+      - '64'
+      - '100'
+    ignoreHashCodeFunction: true
+    ignorePropertyDeclaration: true
+    ignoreConstantDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
+    ignoreAnnotation: true
+    ignoreNamedArgument: true
+    ignoreEnums: true
+  MaxLineLength:
+    maxLineLength: 150
+    excludePackageStatements: true
+    excludeImportStatements: true
+  UnusedPrivateMember:
+    active: true
+  ForbiddenComment:
+    active: false
+  ReturnCount:
+    max: 4
+  ThrowsCount:
+    max: 3
+  SpacingBetweenPackageAndImports:
+    active: true
+
+potential-bugs:
+  AvoidReferenceToMutableStateFlowExposedAsStateFlow:
+    active: true
+  CastToNullableType:
+    active: true
+  EqualsAlwaysReturnsTrueOrFalse:
+    active: true
+  UnreachableCode:
+    active: true
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: true
+    exceptionNames:
+      - 'Error'
+      - 'Exception'
+      - 'Throwable'
+      - 'RuntimeException'
+  TooGenericExceptionThrown:
+    active: true
+  SwallowedException:
+    active: true
+    ignoredExceptionTypes:
+      - 'InterruptedException'
+      - 'NumberFormatException'
+      - 'ParseException'
+      - 'MalformedURLException'
+
+coroutines:
+  GlobalCoroutineUsage:
+    active: true
+  InjectDispatcher:
+    active: true
+  RedundantSuspendModifier:
+    active: true
+  SuspendFunWithFlowReturnType:
+    active: true

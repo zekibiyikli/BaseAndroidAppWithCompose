@@ -13,37 +13,37 @@ import com.base.androidappwithcompose.ui.fragment.notifications.NotificationsScr
 import com.base.androidappwithcompose.ui.fragment.userdetail.UserDetailScreen
 
 @Composable
-fun MainNavHost(navController: NavHostController) {
-
+fun MainNavHost(
+    navController: NavHostController,
+    onShowBottomBar: () -> Unit,
+    onHideBottomBar: () -> Unit
+) {
     NavHost(
         navController = navController,
-        startDestination = Routes.HOME
+        startDestination = NavRoutes.Home.route
     ) {
-
-        composable(Routes.HOME) {
-            HomeScreen(navController = navController)
+        composable(NavRoutes.Home.route) {
+            HomeScreen(navController = navController, onShowBottomBar = onShowBottomBar)
         }
 
-        composable(Routes.DASHBOARD) {
-            DashboardScreen(navController = navController)
+        composable(NavRoutes.Dashboard.route) {
+            DashboardScreen(navController = navController, onShowBottomBar = onShowBottomBar)
         }
 
-        composable(Routes.NOTIFICATIONS) {
-            NotificationsScreen(navController = navController)
+        composable(NavRoutes.Notifications.route) {
+            NotificationsScreen(navController = navController, onShowBottomBar = onShowBottomBar)
         }
 
         composable(
-            route = Routes.USER_DETAIL,
-            arguments = listOf(navArgument("userId") { type = NavType.StringType })
+            route = NavRoutes.UserDetail.route,
+            arguments = listOf(navArgument(NavRoutes.UserDetail.ARG_USER_ID) { type = NavType.StringType })
         ) { backStackEntry ->
-
-            val userId = backStackEntry.arguments?.getString("userId") ?: ""
-            UserDetailScreen(userId = userId, navController = navController)
+            val userId = backStackEntry.arguments?.getString(NavRoutes.UserDetail.ARG_USER_ID) ?: ""
+            UserDetailScreen(userId = userId, navController = navController, onHideBottomBar = onHideBottomBar)
         }
 
-        composable(Routes.NO_INTERNET) {
-            NoInternetScreen(false,{})
+        composable(NavRoutes.NoInternet.route) {
+            NoInternetScreen(false, {})
         }
-
     }
 }

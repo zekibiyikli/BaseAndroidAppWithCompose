@@ -4,8 +4,8 @@ import androidx.annotation.Keep
 
 @Keep
 data class InfoModel(
-    var seed:String,
-    var results:Int,
-    var page:Int,
-    var version:String
+    val seed: String,
+    val results: Int,
+    val page: Int,
+    val version: String
 )

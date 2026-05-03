@@ -2,4 +2,12 @@
 <resources>
 
     <style name="Theme.BaseAndroidAppWithCompose" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.BaseAndroidAppWithCompose.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>
+        <item name="postSplashScreenTheme">@style/Theme.BaseAndroidAppWithCompose</item>
+    </style>
+
 </resources>

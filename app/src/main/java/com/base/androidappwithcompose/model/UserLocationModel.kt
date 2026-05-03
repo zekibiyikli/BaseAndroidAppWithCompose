@@ -4,11 +4,11 @@ import androidx.annotation.Keep
 
 @Keep
 data class UserLocationModel(
-    var street: UserLocationStreetModel,
-    var city:String,
-    var state:String,
-    var country:String,
-    var postcode:String,
-    var coordinates: UserLocationCoordinatesModel,
-    var timezone: UserLocationTimezoneModel,
+    val street: UserLocationStreetModel,
+    val city: String,
+    val state: String,
+    val country: String,
+    val postcode: String,
+    val coordinates: UserLocationCoordinatesModel,
+    val timezone: UserLocationTimezoneModel,
 )

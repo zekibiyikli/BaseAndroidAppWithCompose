@@ -1,25 +1,25 @@
 package com.base.androidappwithcompose.data.flow
 
-import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
-class ApiResultHandler<T,E>(private val onSuccess: (T?) -> Unit, private val onFailure: (E?) -> Unit)  {
-
-    var loading = MutableLiveData<Boolean>()
+class ApiResultHandler<T, E>(
+    private val onSuccess: (T?) -> Unit,
+    private val onFailure: (E?) -> Unit
+) {
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean> = _loading.asStateFlow()
 
     fun handleApiResult(result: ApiResult<T?, E?>) {
         when (result.status) {
-            ApiStatus.LOADING -> {
-                loading.value = true
-                //onLoading(result.data)
-            }
-
+            ApiStatus.LOADING -> _loading.value = true
             ApiStatus.SUCCESS -> {
-                loading.value = false
+                _loading.value = false
                 onSuccess(result.data)
             }
-
             ApiStatus.ERROR -> {
-                loading.value = false
+                _loading.value = false
                 onFailure(result.message)
             }
         }

@@ -1,6 +1,5 @@
 package com.base.androidappwithcompose.ui.fragment.home
 
-import com.base.androidappwithcompose.core.BaseRepository
 import com.base.androidappwithcompose.core.BaseViewModel
 import com.base.androidappwithcompose.data.flow.ApiResult
 import com.base.androidappwithcompose.data.flow.toResultFlow
@@ -15,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     val repo: MainRepo
-) : BaseViewModel<BaseRepository>(){
+) : BaseViewModel() {
 
     init {
         getRandomUsers()

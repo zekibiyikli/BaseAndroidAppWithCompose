@@ -4,6 +4,6 @@ import androidx.annotation.Keep
 
 @Keep
 data class UserLocationTimezoneModel(
-    var offset:String,
-    var description:String
+    val offset: String,
+    val description: String
 )

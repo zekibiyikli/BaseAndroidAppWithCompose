@@ -12,25 +12,24 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.base.androidappwithcompose.model.UserModel
-import com.base.androidappwithcompose.ui.activity.LocalMainActivity
 import com.base.androidappwithcompose.ui.item.UserItem
 import com.base.androidappwithcompose.ui.item.UserShimmerItem
+import com.base.androidappwithcompose.ui.navigation.NavRoutes
 
 @Composable
 fun NotificationsScreen(
     viewModel: NotificationsViewModel = hiltViewModel(),
-    navController: NavController
+    navController: NavController,
+    onShowBottomBar: () -> Unit
 ) {
-    val activity = LocalMainActivity.current
-
     LaunchedEffect(Unit) {
-        activity.showBottomBar()
+        onShowBottomBar()
     }
 
     val users = viewModel.userFlow.collectAsLazyPagingItems()
 
     showList(users){
-        navController.navigate("user_detail/${it.login.uuid}")
+        navController.navigate(NavRoutes.UserDetail.createRoute(it.login.uuid))
     }
 }
 

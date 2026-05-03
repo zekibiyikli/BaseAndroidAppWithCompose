@@ -5,6 +5,6 @@ import com.base.androidappwithcompose.model.InfoModel
 import com.base.androidappwithcompose.model.UserModel
 
 data class UserResponse(
-    var results : ArrayList<UserModel>?,
-    var info: InfoModel?
-): BaseResponse()
+    val results: ArrayList<UserModel>?,
+    val info: InfoModel?
+) : BaseResponse()

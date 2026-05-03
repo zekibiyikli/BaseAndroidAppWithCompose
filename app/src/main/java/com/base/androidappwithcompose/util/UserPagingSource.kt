@@ -8,6 +8,7 @@ import com.base.androidappwithcompose.model.UserModel
 class UserPagingSource(
     private val api: ApiService
 ) : PagingSource<Int, UserModel>() {
+
     override fun getRefreshKey(state: PagingState<Int, UserModel>): Int? {
         return state.anchorPosition?.let { anchorPos ->
             state.closestPageToPosition(anchorPos)?.prevKey?.plus(1)
@@ -18,9 +19,8 @@ class UserPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserModel> {
         return try {
             val page = params.key ?: 1
-            val response = api.getRandomUsers2()
-            val users = response.results ?: emptyList() // UserResponse.results: List<UserModel>
-
+            val response = api.getUsers(page = page, results = params.loadSize)
+            val users = response.body()?.results ?: emptyList()
             LoadResult.Page(
                 data = users,
                 prevKey = if (page == 1) null else page - 1,
@@ -30,5 +30,4 @@ class UserPagingSource(
             LoadResult.Error(e)
         }
     }
-
 }

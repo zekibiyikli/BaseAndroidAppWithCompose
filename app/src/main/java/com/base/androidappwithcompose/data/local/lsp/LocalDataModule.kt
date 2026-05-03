@@ -15,6 +15,6 @@ object LocalDataModule {
     @Provides
     @Singleton
     fun provideLocalSharedPreferences(@ApplicationContext context: Context): LocalSharedPreferences {
-        return LocalSharedPreferences.Companion.getInstance(context)
+        return LocalSharedPreferences(context)
     }
 }

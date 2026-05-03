@@ -1,6 +1,5 @@
 package com.base.androidappwithcompose.ui.fragment.home
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,38 +12,38 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.base.androidappwithcompose.data.flow.ApiResult
 import com.base.androidappwithcompose.model.UserModel
-import com.base.androidappwithcompose.ui.activity.LocalMainActivity
 import com.base.androidappwithcompose.ui.item.UserItem
 import com.base.androidappwithcompose.ui.item.UserShimmerItem
+import com.base.androidappwithcompose.ui.navigation.NavRoutes
+import timber.log.Timber
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    navController: NavController
+    navController: NavController,
+    onShowBottomBar: () -> Unit
 ) {
-    val activity = LocalMainActivity.current
-
     LaunchedEffect(Unit) {
-        activity.showBottomBar()
+        onShowBottomBar()
     }
 
     val usersResult by viewModel.usersFlow.collectAsState()
 
     when (val result = usersResult) {
         is ApiResult.Success -> {
-            Log.e("Zeki","Success")
+            Timber.d("Success")
             val list = result.data?.results
             list?.let {
                 showList(users = it,onUserClick={user->
-                    navController.navigate("user_detail/${user.login.uuid}")
+                    navController.navigate(NavRoutes.UserDetail.createRoute(user.login.uuid))
                 })
             }
         }
         is ApiResult.Error -> {
-            Log.e("Zeki","Error")
+            Timber.e("Error")
         }
         is ApiResult.Loading -> {
-            Log.e("Zeki","Loadinggg")
+            Timber.d("Loading")
             LoadingShimmerList()
         }
         else -> {}

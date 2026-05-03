@@ -4,6 +4,6 @@ import androidx.annotation.Keep
 
 @Keep
 data class UserIdModel(
-    var name: String,
-    var value: String
+    val name: String,
+    val value: String
 )

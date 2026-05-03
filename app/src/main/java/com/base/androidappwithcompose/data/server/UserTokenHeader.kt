@@ -10,17 +10,16 @@ class UserTokenHeader @Inject constructor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val originalRequest = chain.request()
-        val token=localData.userToken
-        val newRequest = originalRequest.newBuilder()
-            .addHeader(KEY_CONTENT_TYPE, HEADER_CONTENT_TYPE)
-            .header("authorization", Config.HEADER_TOKEN) // Header ekle
+        val token = localData.userToken
+        val request = chain.request().newBuilder()
+            .addHeader(HEADER_CONTENT_TYPE_KEY, HEADER_CONTENT_TYPE_VALUE)
+            .apply { if (token.isNotBlank()) header("Authorization", "Bearer $token") }
             .build()
-        return chain.proceed(newRequest)
+        return chain.proceed(request)
     }
 
     companion object {
-        const val HEADER_CONTENT_TYPE = "application/json"
-        const val KEY_CONTENT_TYPE = "content-type"
+        private const val HEADER_CONTENT_TYPE_KEY = "Content-Type"
+        private const val HEADER_CONTENT_TYPE_VALUE = "application/json"
     }
 }

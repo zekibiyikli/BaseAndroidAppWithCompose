@@ -4,11 +4,11 @@ import androidx.annotation.Keep
 
 @Keep
 data class UserLoginModel(
-    var uuid:String,
-    var username:String,
-    var password:String,
-    var salt:String,
-    var md5:String,
-    var sha1:String,
-    var sha256:String
+    val uuid: String,
+    val username: String,
+    val password: String,
+    val salt: String,
+    val md5: String,
+    val sha1: String,
+    val sha256: String
 )

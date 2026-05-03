@@ -4,6 +4,6 @@ import androidx.annotation.Keep
 
 @Keep
 data class UserDobModel(
-    var date: String,
-    var age: Int
+    val date: String,
+    val age: Int
 )
